@@ -8,10 +8,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const navLinks = [
-  { href: '#chapters', label: 'Chapters' },
+  { href: '#locations', label: 'Locations' },
   { href: '#events', label: 'Events' },
   { href: '#about', label: 'About' },
-  { href: '#community', label: 'Community' },
+  { href: '#contact', label: 'Contact Us' },
 ];
 
 export function Navbar() {
@@ -49,7 +49,7 @@ export function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:block">
             <Button variant="primary" size="md">
-              Join Now
+              Apply Now
             </Button>
           </div>
 
@@ -83,7 +83,7 @@ export function Navbar() {
               ))}
               <div className="pt-2">
                 <Button variant="primary" size="md" className="w-full">
-                  Join Now
+                  Apply Now
                 </Button>
               </div>
             </div>

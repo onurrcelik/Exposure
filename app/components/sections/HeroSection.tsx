@@ -1,5 +1,6 @@
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
+import { LogoCarousel } from '../ui/LogoCarousel';
 
 export function HeroSection() {
   return (
@@ -7,27 +8,39 @@ export function HeroSection() {
       <Container>
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-extrabold text-text-primary mb-6 animate-fade-in">
-            Exposure — the world&apos;s largest AI developer community
+            Exclusive Network for Global Turkish AI Talent
           </h1>
 
           <p className="text-base md:text-lg text-text-primary/80 max-w-xl mx-auto mb-8 animate-slide-up">
-            Join a global network of AI builders, share your work, and get discovered.
+            Elite engineers and founders of the Turkish diaspora
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
             <Button variant="primary" size="lg">
-              Find a chapter
+              Apply Now
             </Button>
             <Button variant="secondary" size="lg">
-              Upcoming events
+              Contact Us
             </Button>
           </div>
 
-          <p className="text-sm text-text-primary/60">
-            Free to join. Events in 70+ cities.
+          <p className="text-sm text-text-primary/60 mb-8">
+            San Francisco • Chicago • London • Amsterdam • Milan • Munich • Berlin • Helsinki • Istanbul
           </p>
         </div>
+
+        {/* Backed by Y Combinator Badge */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full shadow-sm">
+            <div className="w-5 h-5 bg-orange-500 rounded-sm flex items-center justify-center">
+              <span className="text-white font-bold text-xs">Y</span>
+            </div>
+            <span className="text-sm font-medium text-gray-700">Y Combinator Backed Founders</span>
+          </div>
+        </div>
       </Container>
+
+      <LogoCarousel />
 
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-blue-500/5 to-transparent pointer-events-none" />
     </section>
