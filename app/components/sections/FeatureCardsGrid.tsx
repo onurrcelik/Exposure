@@ -1,33 +1,42 @@
 import { Container } from '../ui/Container';
+import Image from 'next/image';
 
 const features = [
   {
-    title: 'AI Chapter Spotlight: San Francisco',
-    excerpt: 'Discover how our San Francisco chapter is pushing the boundaries of AI innovation with weekly meetups and hackathons.',
-    tag: 'Chapter Spotlight',
-    date: 'Nov 25, 2025',
-    image: '/images/placeholder-1.jpg',
+    title: 'The Architecture & Scaling Laws of LLMs',
+    excerpt: 'A structural analysis of transformer attention mechanisms, inference optimization, and the mathematical principles defining the next generation of models.',
+    tag: 'Technical Deep Dive',
+    date: 'June, 2025',
+    image: '/images/LLM.png',
   },
   {
-    title: 'Upcoming: AI & Machine Learning Summit',
-    excerpt: 'Join us for the biggest AI conference of the year featuring keynotes from industry leaders and hands-on workshops.',
-    tag: 'Event',
-    date: 'Dec 10, 2025',
-    image: '/images/placeholder-2.jpg',
+    title: 'The Connectivity Layer: Model Context Protocol (MCP)',
+    excerpt: 'Analyzing how MCP is standardizing the interface between AI models and data systems, and why it is becoming the new "USB-C" for AI infrastructure.',
+    tag: 'Emerging Standards',
+    date: 'July, 2025',
+    image: '/images/mcp.png',
   },
   {
-    title: 'Community Highlight: Building with GPT-4',
-    excerpt: 'Learn how community members are leveraging GPT-4 to create innovative applications and solutions.',
-    tag: 'News',
-    date: 'Nov 20, 2025',
-    image: '/images/placeholder-3.jpg',
+    title: 'Building Production-Grade RAG',
+    excerpt: 'Strategies for high-accuracy retrieval. Moving from basic vector search to advanced re-ranking, hybrid search, and hallucination control in enterprise applications.',
+    tag: 'System Engineering',
+    date: 'August, 2025',
+    image: '/images/RAG.png',
   },
   {
-    title: 'New Chapter Launch: Tokyo',
-    excerpt: 'We are excited to announce the launch of our Tokyo chapter, bringing AI innovation to Japan.',
-    tag: 'Chapter Spotlight',
-    date: 'Nov 15, 2025',
-    image: '/images/placeholder-4.jpg',
+    title: 'Algorithmic Acquisition: Optimizing CAC via Meta Ads',
+    excerpt: 'Moving beyond creative testing. A data-driven approach to signal resilience, campaign structure, and scaling user acquisition for early-stage tech products.',
+    tag: 'Growth & Scale',
+    date: 'September, 2025',
+    image: '/images/Meta.png',
+  },
+  {
+    title: 'Signal vs. Noise: What Top-Tier Capital is Hunting',
+    excerpt: 'A closed-door session with e2VC, with a principal-level breakdown of the specific metrics and narratives driving the biggest deals in the Turkish diaspora ecosystem right now.',
+    tag: 'Closed Door: e2VC',
+    date: 'October, 2025',
+    image: '/images/e2vc.png',
+    isHighlighted: true,
   },
 ];
 
@@ -44,36 +53,86 @@ export function FeatureCardsGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group bg-bg-card rounded-2xl overflow-hidden border border-border-light hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-            >
-              <div className="aspect-video w-full bg-gradient-to-br from-brand-blue-400/20 to-accent-peach/20 overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-text-primary/20 text-sm">
-                  Image
-                </div>
+        <div className="flex flex-col items-center gap-5 max-w-5xl mx-auto">
+          {/* First row - 3 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            {features.slice(0, 3).map((feature, index) => (
+              <div
+                key={index}
+                className="group bg-bg-card rounded-lg overflow-hidden border border-border-light hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 cursor-pointer max-w-xs"
+              >
+              <div className="aspect-video w-full bg-gradient-to-br from-brand-blue-400/20 to-accent-peach/20 overflow-hidden relative">
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="object-contain"
+                />
               </div>
 
-              <div className="p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-block px-3 py-1 bg-accent-peach rounded-full text-xs font-semibold text-text-primary">
+              <div className="p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${
+                    feature.isHighlighted
+                      ? 'bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white'
+                      : 'bg-accent-peach text-text-primary'
+                  }`}>
                     {feature.tag}
                   </span>
                   <span className="text-xs text-text-primary/50">{feature.date}</span>
                 </div>
 
-                <h3 className="text-sm md:text-base font-semibold text-text-primary mb-2 line-clamp-2">
+                <h3 className="text-sm font-semibold text-text-primary mb-1.5 line-clamp-2">
                   {feature.title}
                 </h3>
 
-                <p className="text-sm text-text-primary/70 line-clamp-3">
+                <p className="text-xs text-text-primary/70 line-clamp-3">
                   {feature.excerpt}
                 </p>
               </div>
             </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Second row - 2 cards centered */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl">
+            {features.slice(3).map((feature, index) => (
+              <div
+                key={index + 3}
+                className="group bg-bg-card rounded-lg overflow-hidden border border-border-light hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 cursor-pointer max-w-xs"
+              >
+                <div className="aspect-video w-full bg-gradient-to-br from-brand-blue-400/20 to-accent-peach/20 overflow-hidden relative">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                <div className="p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${
+                      feature.isHighlighted
+                        ? 'bg-gradient-to-r from-brand-blue-500 to-brand-blue-600 text-white'
+                        : 'bg-accent-peach text-text-primary'
+                    }`}>
+                      {feature.tag}
+                    </span>
+                    <span className="text-xs text-text-primary/50">{feature.date}</span>
+                  </div>
+
+                  <h3 className="text-sm font-semibold text-text-primary mb-1.5 line-clamp-2">
+                    {feature.title}
+                  </h3>
+
+                  <p className="text-xs text-text-primary/70 line-clamp-3">
+                    {feature.excerpt}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </section>

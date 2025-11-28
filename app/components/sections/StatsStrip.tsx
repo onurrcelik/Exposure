@@ -1,9 +1,9 @@
 import { Container } from '../ui/Container';
 
 const stats = [
-  { number: '152,305', label: 'Members around the world' },
-  { number: '70+', label: 'Active city chapters' },
-  { number: '1,200+', label: 'Events hosted this year' },
+  { number: '25+', label: 'Members around the world' },
+  { number: '9', label: 'Cities worldwide' },
+  { number: '40+', label: 'Meetings hosted' },
 ];
 
 export function StatsStrip() {
