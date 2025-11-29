@@ -2,21 +2,45 @@
 
 import { Container } from '../ui/Container';
 import { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
-    phone: '',
-    websiteType: 'web-development',
+    linkedin: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            linkedin: formData.linkedin,
+            message: formData.message,
+          },
+        ]);
+
+      if (error) throw error;
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', linkedin: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -102,8 +126,8 @@ export function ContactSection() {
                     </label>
                     <input
                       type="text"
-                      name="firstName"
-                      value={formData.firstName}
+                      name="name"
+                      value={formData.name}
                       onChange={handleChange}
                       className="w-full px-0 py-2 border-0 border-b-2 border-gray-300 focus:border-brand-blue-600 focus:ring-0 outline-none transition-colors"
                       required
@@ -131,7 +155,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     name="linkedin"
-                    value={formData.email}
+                    value={formData.linkedin}
                     onChange={handleChange}
                     className="w-full px-0 py-2 border-0 border-b-2 border-gray-300 focus:border-brand-blue-600 focus:ring-0 outline-none transition-colors"
                     required
@@ -152,12 +176,25 @@ export function ContactSection() {
                   />
                 </div>
 
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
+                    Thank you for your message! We'll get back to you soon.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+                    Sorry, there was an error submitting your message. Please try again.
+                  </div>
+                )}
+
                 <div className="flex justify-end pt-2">
                   <button
                     type="submit"
-                    className="px-8 py-3 bg-brand-blue-600 text-white rounded-lg hover:bg-brand-blue-500 transition-colors font-medium"
+                    disabled={isSubmitting}
+                    className="px-8 py-3 bg-brand-blue-600 text-white rounded-lg hover:bg-brand-blue-500 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </div>
               </form>
