@@ -1,7 +1,6 @@
 import { HeroSection } from './components/sections/HeroSection';
 import { FeatureCardsGrid } from './components/sections/FeatureCardsGrid';
 import { MissionSection } from './components/sections/MissionSection';
-import { MediaGrid } from './components/sections/MediaGrid';
 import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/sections/Footer';
 
