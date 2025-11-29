@@ -25,7 +25,7 @@ export function HeroSection() {
           </div>
 
           <p className="text-sm text-text-primary/60 mb-8">
-            San Francisco • Chicago • London • Amsterdam • Milan • Munich • Berlin • Helsinki • Istanbul
+            San Francisco • New York • Chicago • London • Amsterdam • Milan • Munich • Berlin • Helsinki • Istanbul
           </p>
         </div>
 

@@ -2,7 +2,7 @@ import { Container } from '../ui/Container';
 
 const stats = [
   { number: '25+', label: 'Members around the world' },
-  { number: '9', label: 'Cities worldwide' },
+  { number: '10', label: 'Cities worldwide' },
   { number: '40+', label: 'Meetings hosted' },
 ];
 

@@ -8,7 +8,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const navLinks = [
-  { href: '#locations', label: 'Locations' },
   { href: '#events', label: 'Events' },
   { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact Us' },
