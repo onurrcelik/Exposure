@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Exposure - Global AI Community",
+  title: "Exposure - Turkish Diaspora",
   description: "Join a global network of AI builders, share your work, and get discovered.",
 };
 

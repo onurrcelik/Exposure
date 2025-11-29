@@ -3,7 +3,7 @@ import { Badge } from '../ui/Badge';
 
 export function MissionSection() {
   return (
-    <section className="py-16 sm:py-24 bg-bg-section-soft">
+    <section id="manifesto" className="py-16 sm:py-24 bg-bg-section-soft">
       <Container>
         <div className="max-w-3xl mx-auto text-center">
           <Badge className="mb-6">Our Manifesto</Badge>

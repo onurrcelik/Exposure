@@ -8,8 +8,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const navLinks = [
-  { href: '#events', label: 'Events' },
-  { href: '#about', label: 'About' },
+  { href: '#manifesto', label: 'Our Manifesto' },
+  { href: '#events', label: 'Events & Masterclasses' },
   { href: '#contact', label: 'Contact Us' },
 ];
 
@@ -17,45 +17,52 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-border-light backdrop-blur-sm bg-white/95">
+    <nav className="sticky top-0 z-50 border-b border-border-light backdrop-blur-md bg-white/90">
       <Container>
-        <div className="flex items-center justify-between h-20 sm:h-24">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+        <div className="flex items-center justify-between h-20">
+          
+          {/* 1. Logo Section */}
+          <Link href="/" className="flex items-center shrink-0">
             <Image
-              src="/logos/9.png"
+              src="/logos/exposure-logo-transparent.png"
               alt="Exposure Logo"
-              width={1185}
-              height={239}
-              className="h-12 sm:h-14 w-auto"
+              width={180} // Adjusted width for better aspect ratio control
+              height={40}
+              className="h-10 sm:h-12 w-auto object-contain"
               priority
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-text-primary hover:text-brand-blue-500 transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          {/* 2. Right Side: Links + Button Grouped Together */}
+          {/* This div groups them so they sit next to each other */}
+          <div className="hidden md:flex items-center gap-8">
+            
+            {/* Navigation Links */}
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-text-primary hover:text-brand-blue-600 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
+            {/* Separator Line (Optional - adds a premium touch) */}
+            <div className="h-6 w-px bg-gray-200"></div>
+
+            {/* CTA Button */}
             <Button variant="primary" size="md">
               Apply Now
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button (unchanged) */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-text-primary hover:text-brand-blue-500 transition-colors"
+            className="md:hidden p-2 text-text-primary hover:text-brand-blue-600 transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -66,15 +73,15 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu (unchanged) */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border-light animate-fade-in">
+          <div className="md:hidden py-4 border-t border-border-light animate-fade-in bg-white">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-text-primary hover:text-brand-blue-500 transition-colors px-2 py-2"
+                  className="text-sm font-medium text-text-primary hover:text-brand-blue-600 transition-colors px-2 py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}

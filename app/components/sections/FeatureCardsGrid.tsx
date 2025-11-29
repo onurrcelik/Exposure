@@ -42,7 +42,7 @@ const features = [
 
 export function FeatureCardsGrid() {
   return (
-    <section className="py-16 sm:py-24">
+    <section id="events" className="py-16 sm:py-24">
       <Container>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">

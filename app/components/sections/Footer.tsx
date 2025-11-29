@@ -18,7 +18,7 @@ export function Footer() {
           <div className="max-w-xl mb-8">
             <div className="mb-4">
               <Image
-                src="/logos/9png"
+                src="/logos/exposure-logo-transparent.png"
                 alt="Exposure Logo"
                 width={1185}
                 height={239}

@@ -27,7 +27,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-white">
+    <section id="contact" className="py-16 sm:py-24 bg-white">
       <Container>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
@@ -41,7 +41,21 @@ export function ContactSection() {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-5 gap-0 bg-white rounded-2xl shadow-2xl overflow-hidden">
             {/* Left Panel - Contact Information */}
-            <div className="md:col-span-2 bg-brand-blue-600 text-white p-8 md:p-12 relative overflow-hidden">
+            <div className="md:col-span-2 text-white p-8 md:p-12 relative overflow-hidden">
+              {/* Video Background */}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover z-0"
+              >
+                <source src="/liquid-gradient2.mp4" type="video/mp4" />
+              </video>
+
+              {/* Dark overlay for better text readability */}
+              <div className="absolute inset-0 bg-black/20 z-0"></div>
+
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-4 text-white">Contact Information</h3>
                 <p className="text-white/80 mb-12">
@@ -49,7 +63,7 @@ export function ContactSection() {
                 </p>
 
                 <div className="space-y-6">
-            
+
 
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
@@ -71,12 +85,11 @@ export function ContactSection() {
                   </div>
                 </div>
 
-              
+
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute bottom-2 right-7 w-32 h-32 rounded-full bg-accent-peach/30 blur-2xl"></div>
-              <div className="absolute bottom-5 right-7 w-24 h-24 rounded-full bg-accent-peach/40"></div>
+              
             </div>
 
             {/* Right Panel - Contact Form */}

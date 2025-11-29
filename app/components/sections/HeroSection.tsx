@@ -1,6 +1,7 @@
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
 import { LogoCarousel } from '../ui/LogoCarousel';
+import Link from 'next/link';
 
 export function HeroSection() {
   return (
@@ -16,12 +17,16 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
-            <Button variant="primary" size="lg">
-              Apply Now
-            </Button>
-            <Button variant="secondary" size="lg">
-              Contact Us
-            </Button>
+            <Link href="/apply">
+              <Button variant="primary" size="lg">
+                Apply Now
+              </Button>
+            </Link>
+            <Link href="#contact">
+              <Button variant="secondary" size="lg">
+                Contact Us
+              </Button>
+            </Link>
           </div>
 
           <p className="text-sm text-text-primary/60 mb-8">
