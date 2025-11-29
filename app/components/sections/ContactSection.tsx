@@ -2,7 +2,7 @@
 
 import { Container } from '../ui/Container';
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -20,6 +20,15 @@ export function ContactSection() {
     setSubmitStatus('idle');
 
     try {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+      if (!supabaseUrl || !supabaseAnonKey) {
+        throw new Error('Supabase configuration missing');
+      }
+
+      const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
       const { error } = await supabase
         .from('contact_submissions')
         .insert([
