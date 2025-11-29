@@ -54,9 +54,11 @@ export function Navbar() {
             <div className="h-6 w-px bg-gray-200"></div>
 
             {/* CTA Button */}
-            <Button variant="primary" size="md">
-              Apply Now
-            </Button>
+            <Link href="/apply">
+              <Button variant="primary" size="md">
+                Apply Now
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button (unchanged) */}
