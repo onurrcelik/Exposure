@@ -1,13 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY!;
-
-// Server-side client with secret key - bypasses RLS
-const supabase = createClient(supabaseUrl, supabaseSecretKey);
-
 export async function POST(request: NextRequest) {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
+
+  if (!supabaseUrl || !supabaseSecretKey) {
+    return NextResponse.json(
+      { error: 'Supabase configuration missing' },
+      { status: 500 }
+    );
+  }
+
+  // Server-side client with secret key - bypasses RLS
+  const supabase = createClient(supabaseUrl, supabaseSecretKey);
   try {
     const formData = await request.formData();
 
