@@ -18,10 +18,59 @@ export default function ApplyPage() {
     referral: '',
     agreeToTerms: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Application submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('linkedin', formData.linkedin);
+      formDataToSend.append('location', formData.location);
+      formDataToSend.append('motivation', formData.motivation);
+      formDataToSend.append('referral', formData.referral);
+
+      if (formData.cv) {
+        formDataToSend.append('cv', formData.cv);
+      }
+
+      const response = await fetch('/api/applications', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage({ type: 'success', text: 'Application submitted successfully! We\'ll review it and get back to you soon.' });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          linkedin: '',
+          location: '',
+          cv: null,
+          background: '',
+          motivation: '',
+          referral: '',
+          agreeToTerms: false,
+        });
+      } else {
+        setSubmitMessage({ type: 'error', text: result.error || 'Failed to submit application. Please try again.' });
+      }
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      setSubmitMessage({ type: 'error', text: 'An error occurred. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -275,15 +324,29 @@ export default function ApplyPage() {
               />
             </div>
 
+            {/* Submit Message */}
+            {submitMessage && (
+              <div
+                className={`p-3 rounded-lg text-sm ${
+                  submitMessage.type === 'success'
+                    ? 'bg-green-50 text-green-800 border border-green-200'
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}
+              >
+                {submitMessage.text}
+              </div>
+            )}
+
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-2.5 bg-brand-blue-600 text-white rounded-lg hover:bg-brand-blue-500 transition-colors font-medium text-base mt-2"
+              disabled={isSubmitting}
+              className="w-full py-2.5 bg-brand-blue-600 text-white rounded-lg hover:bg-brand-blue-500 transition-colors font-medium text-base mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit Application
+              {isSubmitting ? 'Submitting...' : 'Submit Application'}
             </button>
 
-            
+
           </form>
         </div>
       </div>
