@@ -92,9 +92,9 @@ export default function ApplyPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left Side - Video Background with Info */}
-      <div className="hidden lg:flex lg:w-1/2 p-12 flex-col relative overflow-hidden">
+    <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* Top/Left Side - Video Background with Info */}
+      <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-12 flex flex-col relative overflow-hidden">
         {/* Video Background */}
         <video
           autoPlay
@@ -110,14 +110,13 @@ export default function ApplyPage() {
         <div className="absolute inset-0 bg-black/20"></div>
 
         <div className="relative z-10">
-
           <div className="text-white">
-            <p className="text-lg mb-4 opacity-90">Membership Application</p>
-            <h1 className="text-5xl font-bold mb-6 leading-tight text-white">
-  Get Exposed to the Top 1%
-</h1>
-            <p className="text-xl opacity-90 max-w-md">
-            Exposure is strictly curated. We review every profile to ensure the caliber of the room remains at the top 1%.
+            <p className="text-sm sm:text-base lg:text-lg mb-2 sm:mb-4 opacity-90">Membership Application</p>
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight text-white">
+              Get Exposed to the Top 1%
+            </h1>
+            <p className="text-base sm:text-lg lg:text-xl opacity-90 max-w-md mb-12 sm:mb-6">
+              Exposure is strictly curated. We review every profile to ensure the caliber of the room remains at the top 1%.
             </p>
           </div>
         </div>
@@ -126,34 +125,21 @@ export default function ApplyPage() {
         <div className="flex-grow"></div>
 
         {/* Partner Logos */}
-        <div className="relative z-10 mb-16">
-          <p className="text-white/70 text-sm mb-4">Our members come from</p>
-          <div className="flex items-center gap-8 flex-wrap">
-            <div className="text-white/80 text-sm font-medium">Y Combinator</div>
-            <div className="text-white/80 text-sm font-medium">Stanford</div>
-            <div className="text-white/80 text-sm font-medium">UC Berkeley</div>
-            <div className="text-white/80 text-sm font-medium">UChicago</div>
-            <div className="text-white/80 text-sm font-medium">Robert College</div>
+        <div className="relative z-10 mb-8 lg:mb-16">
+          <p className="text-white/70 text-xs sm:text-sm mb-3 sm:mb-4">Our members come from</p>
+          <div className="flex items-center gap-2 sm:gap-4 lg:gap-8">
+            <div className="text-white/80 text-[10px] sm:text-sm font-medium whitespace-nowrap">Y Combinator</div>
+            <div className="text-white/80 text-[10px] sm:text-sm font-medium whitespace-nowrap">Stanford</div>
+            <div className="text-white/80 text-[10px] sm:text-sm font-medium whitespace-nowrap">UC Berkeley</div>
+            <div className="text-white/80 text-[10px] sm:text-sm font-medium whitespace-nowrap">UChicago</div>
+            <div className="text-white/80 text-[10px] sm:text-sm font-medium whitespace-nowrap">Robert College</div>
           </div>
         </div>
       </div>
 
-      {/* Right Side - Application Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-white overflow-y-auto">
-        <div className="w-full max-w-lg py-6">
-          {/* Mobile Logo */}
-          <div className="lg:hidden mb-6">
-            <Link href="/">
-              <Image
-                src="/logos/exposure-logo-transparent.png"
-                alt="Exposure Logo"
-                width={180}
-                height={40}
-                className="h-10 w-auto"
-              />
-            </Link>
-          </div>
-
+      {/* Right/Bottom Side - Application Form */}
+      <div className="w-full lg:w-1/2 flex items-start lg:items-start justify-center p-6 lg:pt-12 bg-white overflow-y-auto">
+      <div className="w-full max-w-lg py-6 lg:py-0">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-text-primary mb-1">Apply Now</h2>
             <p className="text-sm text-text-primary/60">

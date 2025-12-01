@@ -35,9 +35,9 @@ export function LogoCarousel() {
   // Helper component
   const LogoTrack = ({ trackKey }: { trackKey: string }) => (
     <div 
-      // [animation-duration:150s] = Mobile (Slow)
+      // [animation-duration:40s] = Mobile (Slow)
       // md:[animation-duration:60s] = Desktop (Faster)
-      className="flex flex-shrink-0 items-center gap-8 md:gap-12 animate-scroll pr-8 md:pr-12 [animation-duration:40s] md:[animation-duration:60s]"
+      className="flex flex-shrink-0 items-center gap-8 md:gap-12 animate-scroll pr-8 md:pr-12 [animation-duration:40s] md:[animation-duration:40s]"
     >
       {logos.map((logo, index) => {
         const sizeConfig = getSizeClass(logo.size);

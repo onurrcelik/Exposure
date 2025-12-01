@@ -90,9 +90,11 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-2">
-                <Button variant="primary" size="md" className="w-full">
-                  Apply Now
-                </Button>
+                <Link href="/apply" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="primary" size="md" className="w-full">
+                    Apply Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
