@@ -24,53 +24,46 @@ export function LogoCarousel() {
   const getSizeClass = (size: string) => {
     switch (size) {
       case 'large':
-        return { width: 200, height: 100, className: 'h-20 w-auto object-contain' };
+        return { width: 200, height: 100, className: 'h-14 md:h-20 w-auto object-contain' };
       case 'small':
-        return { width: 120, height: 60, className: 'h-12 w-auto object-contain' };
+        return { width: 120, height: 60, className: 'h-8 md:h-12 w-auto object-contain' };
       default:
-        return { width: 160, height: 80, className: 'h-16 w-auto object-contain' };
+        return { width: 160, height: 80, className: 'h-11 md:h-16 w-auto object-contain' };
     }
   };
 
+  // Helper component
+  const LogoTrack = ({ trackKey }: { trackKey: string }) => (
+    <div 
+      // [animation-duration:150s] = Mobile (Slow)
+      // md:[animation-duration:60s] = Desktop (Faster)
+      className="flex flex-shrink-0 items-center gap-8 md:gap-12 animate-scroll pr-8 md:pr-12 [animation-duration:40s] md:[animation-duration:60s]"
+    >
+      {logos.map((logo, index) => {
+        const sizeConfig = getSizeClass(logo.size);
+        return (
+          <div
+            key={`${trackKey}-${logo.alt}-${index}`}
+            className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+          >
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              width={sizeConfig.width}
+              height={sizeConfig.height}
+              className={sizeConfig.className}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+
   return (
     <div className="w-full overflow-hidden py-8 bg-white">
-      <div className="flex items-center gap-12 animate-scroll">
-        {/* First set of logos */}
-        {logos.map((logo, index) => {
-          const sizeConfig = getSizeClass(logo.size);
-          return (
-            <div
-              key={`logo-1-${index}`}
-              className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
-            >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={sizeConfig.width}
-                height={sizeConfig.height}
-                className={sizeConfig.className}
-              />
-            </div>
-          );
-        })}
-        {/* Duplicate set for seamless loop */}
-        {logos.map((logo, index) => {
-          const sizeConfig = getSizeClass(logo.size);
-          return (
-            <div
-              key={`logo-2-${index}`}
-              className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
-            >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={sizeConfig.width}
-                height={sizeConfig.height}
-                className={sizeConfig.className}
-              />
-            </div>
-          );
-        })}
+      <div className="flex w-max">
+        <LogoTrack trackKey="track-1" />
+        <LogoTrack trackKey="track-2" />
       </div>
     </div>
   );
